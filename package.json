@@ -4,7 +4,8 @@
   "description": "Bookingcare",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec npx babel-node server.js"
   },
   "keywords": [
     "bookingcare"
@@ -12,6 +13,7 @@
   "author": "HahieuPAC",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.12.10",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
