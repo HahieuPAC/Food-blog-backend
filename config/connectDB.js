@@ -1,11 +1,12 @@
-import { Sequelize } from '@sequelize/core';
+const { Sequelize } = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
 const sequelize = new Sequelize('hoidanit', 'root', null, {
     host: 'localhost',
   // one of our supported dialects:
   // 'mysql', 'mariadb', 'postgres', 'mssql', 'sqlite', 'snowflake', 'db2' or 'ibmi'
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: false
 });
 
 let connectDB = async () => {
