@@ -1,8 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser"; //get query params
-import configViewEngine from "./src/config/viewEngine";
-import initWebRoutes from "./src/routes/web";
+import configViewEngine from "./config/viewEngine";
+import initWebRoutes from "./routes/web";
 import 'dotenv/config';
+import connectDB from "../config/connectDB";
 
 const app = express();
 const port = process.env.PORT || 8081;
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 configViewEngine(app);
 initWebRoutes(app);
+connectDB();
 
 app.listen(port, () => {
     console.log ("Backend Nodejs is running on the port: ", port);
