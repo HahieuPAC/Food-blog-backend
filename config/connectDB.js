@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('hoidanit', 'root', null, {
+const sequelize = new Sequelize('hieu', 'root', null, {
     host: 'localhost',
   // one of our supported dialects:
   // 'mysql', 'mariadb', 'postgres', 'mssql', 'sqlite', 'snowflake', 'db2' or 'ibmi'
