@@ -1,6 +1,6 @@
 import express from "express";
 import db from '../../models/index';
-import {createNewUser, getAllUser, getUserInfoById, updateUserData, putCRUD } from "../service/CRUDService";
+import {createNewUser, getAllUser, getUserInfoById, updateUserData, deleteUserData } from "../service/CRUDService";
 
 
 let getHomePage = async (req,res) => {
@@ -25,7 +25,7 @@ let getCRUD = (req,res) => {
 let postCRUD = async (req,res) => {
     let message = await createNewUser(req.body);
     console.log(message);
-    return res.send('postCRUD from sv');
+    return res.redirect('/get-crud');
 }
 
 let displayGetCRUD = async (req, res) => {
@@ -50,8 +50,21 @@ let getEditCRUD = async (req, res) => {
 
 let putCRUD = async (req, res) => {
     let data = req.body;
-    await updateUserData(data);
-    return res.send('update done');
+    await updateUserData(data); 
+    return res.redirect('/get-crud');
+}
+
+let getDeleteCRUD = async (req, res) => {
+    let id = req.query.id;
+    if (id) {
+        await deleteUserData(id);
+        return res.redirect('/get-crud');
+    }
+    else {
+        return res.send('user not found');
+    }
+
+    
 }
 
 
@@ -63,4 +76,5 @@ module.exports = {
     displayGetCRUD,
     getEditCRUD,
     putCRUD,
+    getDeleteCRUD,
 }

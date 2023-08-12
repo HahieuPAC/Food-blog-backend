@@ -1,5 +1,5 @@
 import express from "express";
-import { getHomePage, getAboutPage, getCRUD, postCRUD, displayGetCRUD, getEditCRUD, putCRUD } from "../controller/homeController";
+import { getHomePage, getAboutPage, getCRUD, postCRUD, displayGetCRUD, getEditCRUD, putCRUD, getDeleteCRUD } from "../controller/homeController";
 
 let router = express.Router();
 
@@ -11,9 +11,10 @@ let initWebRoutes = (app) => {
     router.get('/get-crud', displayGetCRUD);
     router.get('/edit-crud?:id', getEditCRUD);
 
+    router.post('/put-crud', putCRUD)
     router.post('/post-crud', postCRUD);
+    router.get('/delete-crud', getDeleteCRUD);
 
-    router.put('/put-crud', putCRUD);
     app.use('/', router);
 
 }

@@ -1,4 +1,7 @@
+import { resolve } from 'path';
 import db from '../../models';
+import { rejects } from 'assert';
+import e from 'express';
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -69,8 +72,45 @@ let getUserInfoById = (id) => {
 }
 
 let updateUserData = (data) => {
-    console.log('data form service');
-    console.log(data);
+    return new Promise(async (resolve, rejects) => {
+        try {
+            let userData = await db.user.findOne({
+                where: {id: data.id}
+            });
+            if (userData) {
+                userData.firstName = data.firstName;
+                userData.lastName = data.lastName;
+                userData.address = data.address;
+
+                await userData.save();
+                resolve();
+            } 
+            else {
+                resolve();
+            }
+        } catch (error) {
+            rejects(error);
+        }
+    })
+}
+
+let deleteUserData = (id) => {
+    return new Promise ( async (resolve, rejects) => {
+        try {
+            let userData = await db.user.findOne({
+                where: {id: id}
+            });
+            if (userData) {
+                await userData.destroy();
+                resolve();
+            }
+            else {
+                resolve();
+            }
+        } catch (error) {
+            rejects(error);
+        }
+    })
 }
 
 module.exports = {
@@ -78,4 +118,5 @@ module.exports = {
     getAllUser: getAllUser,
     getUserInfoById: getUserInfoById,
     updateUserData: updateUserData,
+    deleteUserData: deleteUserData,
 }
