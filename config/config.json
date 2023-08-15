@@ -5,7 +5,7 @@
     "database": "hieu",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "loging": false
+    "logging": false
     
   },
   "test": {
