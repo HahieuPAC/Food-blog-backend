@@ -4,11 +4,11 @@ import configViewEngine from "./config/viewEngine";
 import initWebRoutes from "./routes/web";
 import 'dotenv/config';
 import connectDB from "../config/connectDB";
-import cors from 'cors';
 
 
+const cors = require('cors');
 const app = express();
-app.use(cors({origin: true}));
+app.use(cors({ credentials: true, origin: true })); 
 const port = process.env.PORT || 8081;
 console.log('>>check port:', port);
 app.use(bodyParser.json());
