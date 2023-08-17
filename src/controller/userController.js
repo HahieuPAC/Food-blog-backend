@@ -1,5 +1,6 @@
 import db from "../../models";
 import userService from "../service/userService";
+
 let handleLogin = async (req,res) => {
     let email = req.body.email;
     let password = req.body.password;
@@ -20,8 +21,32 @@ let handleLogin = async (req,res) => {
     })
 }
 
+let handleGetAllUser = async(req,res) => {
+    let id = req.query.id; // All, id
+    if(!id) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: 'Missing required parameters',
+            user: []
+        })
+    }
+
+    let user = await userService.handleGetAllUser(id);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Ok',
+        user
+    })
+}
+
+let handleCreateNewUser = (req,res) => {
+    
+}
+
 
 
 module.exports = {
     handleLogin: handleLogin,
+    handleGetAllUser: handleGetAllUser,
+    handleCreateNewUser: handleCreateNewUser,
 }

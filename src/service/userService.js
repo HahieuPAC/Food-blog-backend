@@ -64,7 +64,44 @@ let checkUserEmail = (userEmail) => {
         }
     })
 }
+
+let handleGetAllUser = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let users = null;
+            if (id == 'ALL') {
+                users = await db.user.findAll({
+                    
+                });
+            }
+            if (id && id !== 'ALL') {
+                users = await db.user.findOne({
+                    where: {id : id},
+                    attributes: {
+                        exclude: ['password']
+                    }
+                })
+            }
+            console.log(users);
+            resolve(users);
+        } catch (error) {
+            reject(error);
+        }
+    })
+
+}
+
+let createNewUser = (data) => {
+    return new Promise((resolve, reject) => {
+        try {
+            
+        } catch (error) {
+            reject(error);
+        }
+    })
+} 
 module.exports = {
     handleUserLogin: handleUserLogin,
-    checkUserEmail: checkUserEmail,
+    handleGetAllUser: handleGetAllUser,
+    createNewUser: createNewUser,
 }
