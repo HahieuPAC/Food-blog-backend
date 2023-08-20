@@ -101,7 +101,9 @@ let deleteUserData = (id) => {
                 where: {id: id}
             });
             if (userData) {
-                await userData.destroy();
+                await db.user.destroy({
+                    where: { id: id }
+                });
                 resolve();
             }
             else {
