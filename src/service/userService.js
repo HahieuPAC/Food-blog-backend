@@ -108,7 +108,7 @@ let createNewUser = (data) => {
         if (check) {
             resolve({
                 errCode: 1,
-                message: 'Your email is exist'});
+                errMessage: 'Your email is exist'});
         }
         else {
             try {
