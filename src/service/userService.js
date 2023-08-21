@@ -163,6 +163,7 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log('check nodejd', data);
             let userData = await db.user.findOne({
                 where: { id: data.id },
                 raw: false
