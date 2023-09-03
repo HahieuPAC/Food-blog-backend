@@ -1,4 +1,5 @@
 import db from "../../models";
+import allcode from "../../models/allcode";
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -23,7 +24,7 @@ let handleUserLogin = (email, password) => {
                 
                 let user = await db.user.findOne({
                     where: { email: email},
-                    attributes: ['email', 'roleId', 'password'],
+                    attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'],
                     raw: true
                 });
                 if (user) {
@@ -191,7 +192,29 @@ let updateUserData = (data) => {
     });
 };
 
-
+let getAllCodeService = (typeInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!typeInput) {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Missing required parameters !  "
+                })
+            }
+            else {
+                let res = {};
+            let allCode = await db.Allcode.findAll({
+                where: { type: typeInput}
+            });
+            res.errCode = 0;
+            res.data = allCode
+            resolve(res);
+            }
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 
 
 
@@ -201,5 +224,6 @@ module.exports = {
     handleGetAllUser: handleGetAllUser,
     createNewUser: createNewUser,
     deleteUser: deleteUser,
-    updateUserData: updateUserData
+    updateUserData: updateUserData,
+    getAllCodeService: getAllCodeService,
 }
