@@ -9,7 +9,7 @@ import connectDB from "../config/connectDB";
 const cors = require('cors');
 const app = express();
 app.use(cors({ credentials: true, origin: true })); 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 console.log('>>check port:', port);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
