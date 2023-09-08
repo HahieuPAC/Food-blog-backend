@@ -27,12 +27,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       gender: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.STRING
       },
       image: {
         type: Sequelize.BOOLEAN
       },
-      roleID: {
+      roleId: {
         type: Sequelize.STRING
       },
       keyRole: {
