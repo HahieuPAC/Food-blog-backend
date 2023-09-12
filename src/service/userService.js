@@ -216,7 +216,7 @@ let getAllCodeService = (typeInput) => {
                 where: { type: typeInput}
             });
             res.errCode = 0;
-            res.data = AllCode
+            res.data = allCode;
             resolve(res);
             }
         } catch (error) {
