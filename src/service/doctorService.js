@@ -90,7 +90,7 @@ let getDetailDoctorById = (id) => {
                         id: id
                     },
                     attributes: {
-                        exclude: ['password', 'image']
+                        exclude: ['password']
                     },
                     include: [
                         { 
@@ -102,9 +102,13 @@ let getDetailDoctorById = (id) => {
                         attributes: ['valueEn', 'valueVi']
                         },
                     ],
-                    raw: true,
+                    raw: false,
                     nest: true
                 })
+
+                if (data && data.image) {
+                    data.image = new Buffer.from(data.image, 'base64').toString('binary');
+                }
 
                 resolve({
                     errCode: 0,
