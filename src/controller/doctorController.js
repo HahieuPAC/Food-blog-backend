@@ -28,7 +28,6 @@ let getAllDoctor = async(req, res) => {
 }
 
 let postInfoDoctor = async(req, res) => {
-    console.log(">> check req.body: ", req.body)
     try {
         let response = await doctorService.saveDetailInfoDoctor(req.body)
         return res.status(200).json(response)
