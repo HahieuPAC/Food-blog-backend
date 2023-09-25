@@ -74,22 +74,46 @@ let bulkCreateSchedule = async(req, res) => {
     }
 }
 
+let timestampToDateTime = (timestamp) => {
+    // Chuyển đổi timestamp thành số
+    timestamp = parseInt(timestamp);
+
+    let date = new Date(timestamp);
+    
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+    let hours = String(date.getHours()).padStart(2, '0');
+    let minutes = String(date.getMinutes()).padStart(2, '0');
+    let seconds = String(date.getSeconds()).padStart(2, '0');
+    
+    let formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    
+    return formattedDateTime;
+}
+
+
 
 let getScheduleByDate = async (req, res) => {
     try {
-        console.log(req.query.doctorId, "----- ",req.query.date)
-        let momentDate = moment(req.query.date).format('YYYY-MM-DD HH:mm:ss');
-        console.log(req.query.doctorId, "----- ",momentDate)
-        let response = await doctorService.getScheduleByDate(req.query.doctorId, momentDate)
-        return res.status(200).json(response)
+        console.log(req.query.doctorId, "----- ", req.query.date);
+        let momentDate = timestampToDateTime(req.query.date);
+        console.log(req.query.doctorId, "----- ", momentDate);
+        let response = await doctorService.getScheduleByDate(req.query.doctorId, momentDate);
+        return res.status(200).json(response);
     } catch (error) {
         console.log(error);
-        return {
+        return res.status(500).json({
             errCode: -1,
             errMessage: "Error from server"
-        }
+        });
     }
 }
+
+
+
+
+
 
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
