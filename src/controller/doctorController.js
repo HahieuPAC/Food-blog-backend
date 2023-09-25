@@ -1,4 +1,6 @@
 import doctorService from "../service/doctorService";
+const moment = require('moment');
+
 
 let getTopDoctorHome = async (req, res) => {
     let limit = req.query.limit;
@@ -76,7 +78,9 @@ let bulkCreateSchedule = async(req, res) => {
 let getScheduleByDate = async (req, res) => {
     try {
         console.log(req.query.doctorId, "----- ",req.query.date)
-        let response = await doctorService.getScheduleByDate(req.query.doctorId, req.query.date)
+        let momentDate = moment(req.query.date).format('YYYY-MM-DD HH:mm:ss');
+        console.log(req.query.doctorId, "----- ",momentDate)
+        let response = await doctorService.getScheduleByDate(req.query.doctorId, momentDate)
         return res.status(200).json(response)
     } catch (error) {
         console.log(error);
