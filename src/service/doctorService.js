@@ -52,10 +52,10 @@ let getAllDoctor = () => {
 
 let saveDetailInfoDoctor = (inputData) => {
     return new Promise(async(resolve, reject) => {
-        console.log(">>> check inputdata: ", inputData)
+        console.log(">>> check inputdata: ", inputData.selectedPrice , inputData.selectedPayment, inputData.selectedProvince)
         try {
             if (!inputData.doctorId || !inputData.contentHTML || !inputData.contentMarkdown
-                || !inputData.action || !inputData.selectedPrice || !inputData.selectedPayMent || !inputData.selectedProvince || !inputData.nameClinic || !inputData.addressClinic || !inputData.note) {
+                || !inputData.action || !inputData.selectedPrice || !inputData.selectedPayment || !inputData.selectedProvince || !inputData.nameClinic || !inputData.addressClinic || !inputData.note) {
                 resolve({
                     errCode: -1,
                     errMessage: "Missing parameter"
@@ -94,11 +94,9 @@ let saveDetailInfoDoctor = (inputData) => {
                     raw: false
                 })  
 
-                !inputData.doctorId || !inputData.contentHTML || !inputData.contentMarkdown
-                || !inputData.action || !inputData.selectedPrice || !inputData.selectedPayment || !inputData.selectedProvince || !inputData.nameClinic || !inputData.addressClinic || !inputData.note
-
                 if (doctorInfo) {
                     //Update
+                    doctorInfo.doctorId = inputData.doctorId;
                     doctorInfo.priceId = inputData.selectedPrice;
                     doctorInfo.provinceId = inputData.selectedProvince; 
                     doctorInfo.paymentId = inputData.selectedPayment;
@@ -110,6 +108,7 @@ let saveDetailInfoDoctor = (inputData) => {
                 else {
                     // create
                     await db.doctor_info.create({
+                        doctorId: inputData.doctorId,
                         priceId : inputData.selectedPrice,
                         provinceId : inputData.selectedProvince, 
                         paymentId : inputData.selectedPayment,
