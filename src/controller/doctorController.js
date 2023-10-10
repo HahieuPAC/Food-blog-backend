@@ -96,10 +96,22 @@ let timestampToDateTime = (timestamp) => {
 
 let getScheduleByDate = async (req, res) => {
     try {
-        console.log(req.query.doctorId, "----- ", req.query.date);
         let momentDate = timestampToDateTime(req.query.date);
-        console.log(req.query.doctorId, "----- ", momentDate);
         let response = await doctorService.getScheduleByDate(req.query.doctorId, momentDate);
+        return res.status(200).json(response);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            errCode: -1,
+            errMessage: "Error from server"
+        });
+    }
+}
+
+let getExtraInfoDoctorById = async (req,res)=> {
+    try {
+        console.log(">>> check doctorId: ", req.query.doctorId)
+        let response = await doctorService.getExtraInfoDoctorById(req.query.doctorId);
         return res.status(200).json(response);
     } catch (error) {
         console.log(error);
@@ -122,4 +134,5 @@ module.exports = {
     getDetailDoctorById: getDetailDoctorById,
     bulkCreateSchedule: bulkCreateSchedule,
     getScheduleByDate: getScheduleByDate,
+    getExtraInfoDoctorById: getExtraInfoDoctorById,
 }
