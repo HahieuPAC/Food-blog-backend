@@ -1,6 +1,7 @@
-
+import emailService from "./emailService";
 import db from "../../models";
 require('dotenv').config();
+
 let postBookAppointment = (data) => {
     console.log(">>> check data postBookAppointment: ", data)
     return new Promise ( async(resolve, reject) => {
@@ -12,12 +13,15 @@ let postBookAppointment = (data) => {
                 })
             }
             else {
+
+                await emailService.sendSimpleEmail(data.email)
                 //upsert patient
                 let user = await db.user.findOrCreate({
                     where: { email: data.email },
                     defaults: {
                         email: data.email,
-                        roleId: 'R3'
+                        roleId: 'R3',
+
                     },
                 });
 
@@ -27,7 +31,7 @@ let postBookAppointment = (data) => {
                         where: {
                             patientId: user[0].id
                         },
-                        default: {
+                        defaults: {
                             statusId: 'S1',
                             doctorId: data.doctorId,
                             patientId: user[0].id,
