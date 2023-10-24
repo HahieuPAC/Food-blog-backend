@@ -14,7 +14,14 @@ let postBookAppointment = (data) => {
             }
             else {
 
-                await emailService.sendSimpleEmail(data.email)
+                await emailService.sendSimpleEmail({
+                    receiverEmail: data.email,
+                    patientName: 'Hà Trung Hiếu',
+                    time: '8:00-9:00 Chủ nhật nhày 01 tháng 08 năm 2023',
+                    doctorName: "Khuyên",
+                    redirectLink: "http://www.youtube.com"
+
+                })
                 //upsert patient
                 let user = await db.user.findOrCreate({
                     where: { email: data.email },
