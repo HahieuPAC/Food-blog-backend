@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       user.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
       user.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' });
       user.hasOne(models.Markdown, {foreignKey: 'doctorId'});
-      user.hasOne(models.doctor_info, {foreignKey: 'doctorId'})
+      user.hasOne(models.doctor_info, {foreignKey: 'doctorId'});
+
+      user.hasMany(models.Schedule, { foreignKey: 'doctorId',as: 'doctorData' });
     }
   };
   user.init({
