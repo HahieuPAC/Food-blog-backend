@@ -1,0 +1,78 @@
+<html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/get-crud">Home</a></li>
+            <li><a href="/get-crud">USER LIST</a></li>
+            <li><a href="/crud">Create a new user</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <form action="/post-crud" method="POST">
+                <div class="form-row">
+                    <div class="col-12 mt-3"> <b>Create a new user</b></div>
+                    <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label for="inputPassword4">Password</label>
+                    <input type="password" class="form-control" name="password" >
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label for="inputEmail4">First name</label>
+                    <input type="text" class="form-control" name="firstName">
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label for="inputPassword4">Last name</label> 
+                    <input type="text" class="form-control" name="lastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" name="address" placeholder="1234 Main St">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label for="inputCity">Phone number</label>
+                    <input type="text" class="form-control" name="phoneNumber">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputZip">Gender</label>
+                        <select name="Gender" class="form-control" >
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                        </select>
+                        </div>
+                    <div class="form-group col-md-3">
+                    <label for="inputZip">Role</label>
+                    <select name="roleId" class="form-control" >
+                        <option value="1">Admin</option>
+                        <option value="2">Doctor</option>
+                        <option value="3">Patient</option>
+                    </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
