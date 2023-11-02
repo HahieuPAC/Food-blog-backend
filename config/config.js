@@ -11,45 +11,23 @@ module.exports = {
     "timezone": "+07:00"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": process.env.TEST_DB_USERNAME,
+    "password": process.env.TEST_DB_PASSWORD,
+    "database": process.env.TEST_DB_DATABASE_NAME,
+    "host": process.env.TEST_DB_HOST,
+    "port": process.env.TEST_DB_PORT,
+    "dialect": process.env.TEST_DB_DIALECT,
+    "timezone": "+07:00"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": process.env.PROD_DB_USERNAME,
+    "password": process.env.PROD_DB_PASSWORD,
+    "database": process.env.PROD_DB_DATABASE_NAME,
+    "host": process.env.PROD_DB_HOST,
+    "port": process.env.PROD_DB_PORT,
+    "dialect": process.env.PROD_DB_DIALECT,
+    "timezone": "+07:00"
   }
-}
-//   "development": {
-//     "username": "root",
-//     "password": null,
-//     "database": "hieu",
-//     "host": "127.0.0.1",
-//     "dialect": "mysql",
-//     "logging": false,
-//     "query": {
-//       "raw": true
-//     },
-//     "timezone": "+07:00"
-    
-//   },
-//   "test": {
-//     "username": "root",
-//     "password": null,
-//     "database": "database_test",
-//     "host": "127.0.0.1",
-//     "dialect": "mysql"
-//   },
-//   "production": {
-//     "username": "root",
-//     "password": null,
-//     "database": "database_production",
-//     "host": "127.0.0.1",
-//     "dialect": "mysql"
-//   }
-// }
+};
+
+// Optional semicolon or another valid JavaScript statement goes here.
