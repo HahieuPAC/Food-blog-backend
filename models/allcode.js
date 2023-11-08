@@ -1,34 +1,34 @@
 'use strict';
 const {
-  Model
+    Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Allcode extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      Allcode.hasMany(models.user, {foreignKey: 'positionId', as: 'positionData'});
-      Allcode.hasMany(models.user, {foreignKey: 'gender', as: 'genderData'});
-      Allcode.hasMany(models.Schedule, {foreignKey: 'timeType', as: 'timeTypeData '});
+    class AllCode extends Model {
+        /**
+         * Helper method for defining associations.
+         * This method is not a part of Sequelize lifecycle.
+         * The `models/index` file will call this method automatically.
+         */
+        static associate(models) {
+            // AllCode.hasMany(models.User, { foreignKey: 'positionId', as: 'positionData' })
+            // AllCode.hasMany(models.User, { foreignKey: 'gender', as: 'genderData' })
+            // AllCode.hasMany(models.Schedule, { foreignKey: 'timeType', as: 'timeTypeData' })
 
-      Allcode.hasMany(models.doctor_info, {foreignKey: 'priceId', as: 'priceTypeData '});
-      Allcode.hasMany(models.doctor_info, {foreignKey: 'provinceId', as: 'provinceTypeData '});
-      Allcode.hasMany(models.doctor_info, {foreignKey: 'paymentId', as: 'paymentTypeData '});
-      
-      
-    }
-  };
-  Allcode.init({
-    keyMap: DataTypes.STRING,
-    type: DataTypes.STRING,
-    valueEn: DataTypes.STRING,
-    valueVi: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'Allcode',
-  });
-  return Allcode;
+            // AllCode.hasMany(models.Doctor_Infor, { foreignKey: 'priceId', as: 'priceTypeData' })
+            // AllCode.hasMany(models.Doctor_Infor, { foreignKey: 'provinceId', as: 'provinceTypeData' })
+            // AllCode.hasMany(models.Doctor_Infor, { foreignKey: 'paymentId', as: 'paymentTypeData' })
+
+            // AllCode.hasMany(models.Booking, { foreignKey: 'timeType', as: 'timeTypeDataPatient' })
+
+        }
+    };
+    AllCode.init({
+        keyMap: DataTypes.STRING,
+        type: DataTypes.STRING,
+        value: DataTypes.STRING,
+    }, {
+        sequelize,
+        modelName: 'AllCode',
+    });
+    return AllCode;
 };

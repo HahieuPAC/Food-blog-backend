@@ -1,23 +1,24 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Allcodes', {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Food', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      keyMap: {
+      foodName: {
         type: Sequelize.STRING
       },
-      type: {
+      image: {
+        type: Sequelize.BLOB('long')
+      },
+      characteristicId: {
         type: Sequelize.STRING
       },
-      valueEn: {
-        type: Sequelize.STRING
-      },
-      valueVi: {
+      categoriesId: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -30,7 +31,7 @@ module.exports = {
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Allcodes');
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Food');
   }
 };

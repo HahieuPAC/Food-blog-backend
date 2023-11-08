@@ -4,11 +4,12 @@ import userController from  "../controller/userController";
 import doctorController from "../controller/doctorController";
 import patientController from "../controller/patientController";
 import specialtyController from "../controller/specialtyController";
+import foodController from "../controller/foodController";
 
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-
+    //CRUD user
     router.get('/', homeController.getHomePage);
     router.get('/about', homeController.getAboutPage);
     router.get('/crud', homeController.getCRUD);
@@ -17,6 +18,14 @@ let initWebRoutes = (app) => {
     router.post('/put-crud', homeController.putCRUD)
     router.post('/post-crud', homeController.postCRUD);
     router.get('/delete-crud', homeController.getDeleteCRUD);
+
+    //CRUD food
+    router.get('/crud-food', foodController.getCRUDFood);
+    router.post('/post-crud-food', foodController.postCRUDFood);
+    router.get("/api/get-all-food-info", foodController.getAllFoodInfo)
+    router.get("/api/all-code", foodController.getAllCode);
+    router.post('/api/create-new-food', foodController.handleCreateNewFood);
+
 
     router.post('/api/login', userController.handleLogin);
     router.get('/api/get-all-user', userController.handleGetAllUser);

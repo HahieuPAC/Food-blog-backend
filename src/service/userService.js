@@ -1,5 +1,5 @@
 import db from "../../models";
-import allcode from "../../models/allcode";
+// import allcode from "../../models/allcode";
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -22,7 +22,7 @@ let handleUserLogin = (email, password) => {
             if (isExist) {
                 //User already exist
                 
-                let user = await db.user.findOne({
+                let user = await db.User.findOne({
                     where: { email: email},
                     attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'],
                     raw: true
@@ -63,7 +63,7 @@ let handleUserLogin = (email, password) => {
 let checkUserEmail = (userEmail) => {
     return new Promise( async (resolve, reject) => {
         try {
-            let user = await db.user.findOne({
+            let user = await db.User.findOne({
                 where: {email: userEmail}
             })
             if (user) {
@@ -83,12 +83,12 @@ let handleGetAllUser = (id) => {
         try {
             let users = null;
             if (id == 'ALL') {
-                users = await db.user.findAll({
+                users = await db.User.findAll({
                     
                 });
             }
             if (id && id !== 'ALL') {
-                users = await db.user.findOne({
+                users = await db.User.findOne({
                     where: {id : id},
                     attributes: {
                         exclude: ['password']
@@ -114,7 +114,7 @@ let createNewUser = (data) => {
         else {
             try {
                 let hashUserPasswordFromBcrypt = await hashUserPassword(data.password);
-                await db.user.create({
+                await db.User.create({
                     email: data.email,
                     password: hashUserPasswordFromBcrypt,
                     firstName: data.firstName,
@@ -139,12 +139,12 @@ let createNewUser = (data) => {
 let deleteUser = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let userData = await db.user.findOne({
+            let userData = await db.User.findOne({
                 where: { id: userId }
             });
 
             if (userData) {
-                await db.user.destroy({
+                await db.User.destroy({
                     where: { id: userId }
                 });
                 resolve({
@@ -166,7 +166,7 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let userData = await db.user.findOne({
+            let userData = await db.User.findOne({
                 where: { id: data.id },
                 raw: false
             });

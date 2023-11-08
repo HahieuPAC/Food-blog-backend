@@ -9,7 +9,7 @@ let createNewUser = async (data) => {
     return  new Promise( async (resolve, reject) => {
         try {
             let hashUserPasswordFromBcrypt = await hashUserPassword(data.password);
-            await db.user.create({
+            await db.User.create({
                 email: data.email,
                 password: hashUserPasswordFromBcrypt,
                 firstName: data.firstName,
@@ -41,7 +41,7 @@ let hashUserPassword = (password) => {
 let getAllUser = () => {
     return new Promise (async(resolve, reject) => {
         try {
-            let users = db.user.findAll({
+            let users = db.User.findAll({
                 raw : true,
             });
             resolve(users);
@@ -54,7 +54,7 @@ let getAllUser = () => {
 let getUserInfoById = (id) => {
     return new Promise ((resolve, reject) => {
         try {
-            let user = db.user.findOne({
+            let user = db.User.findOne({
                 where: {id: id},
                 raw: true,
             });
@@ -64,7 +64,7 @@ let getUserInfoById = (id) => {
             }
             else {
                 resolve({});
-            }
+            }Users
         } catch (error) {
             reject(error);
         }
@@ -74,7 +74,7 @@ let getUserInfoById = (id) => {
 let updateUserData = (data) => {
     return new Promise(async (resolve, rejects) => {
         try {
-            let userData = await db.user.findOne({
+            let userData = await db.User.findOne({
                 where: {id: data.id}
             });
             if (userData) {
@@ -97,11 +97,11 @@ let updateUserData = (data) => {
 let deleteUserData = (id) => {
     return new Promise ( async (resolve, rejects) => {
         try {
-            let userData = await db.user.findOne({
+            let userData = await db.User.findOne({
                 where: {id: id}
             });
             if (userData) {
-                await db.user.destroy({
+                await db.User.destroy({
                     where: { id: id }
                 });
                 resolve();

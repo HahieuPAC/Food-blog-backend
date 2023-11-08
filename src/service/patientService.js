@@ -36,7 +36,7 @@ let postBookAppointment = (data) => {
 
                 await emailService.sendSimpleEmail(dataSend)
                 //upsert patient
-                let user = await db.user.findOrCreate({
+                let user = await db.User.findOrCreate({
                     where: { email: data.email },
                     defaults: {
                         email: data.email,

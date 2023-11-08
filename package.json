@@ -1,7 +1,7 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "backend nodejs hoiDanIT",
+  "description": "food-blog-backend",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,9 +13,9 @@
     "fullstack",
     "nodejs",
     "express",
-    "hoiDanIT"
+    "food-blog"
   ],
-  "author": "Eric HoiDanIT",
+  "author": "Hieu",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",

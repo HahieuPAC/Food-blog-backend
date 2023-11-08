@@ -6,7 +6,7 @@ const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 let getTopDoctorHome = (limitInput) => {
     return new Promise( async(resolve, reject) => {
         try {
-            let user = await db.user.findAll({
+            let user = await db.User.findAll({
                 limit: limitInput,
                 where: {roleId: 'R2'},
                 order: [["createdAt", "DESC"]],
@@ -34,7 +34,7 @@ let getTopDoctorHome = (limitInput) => {
 let getAllDoctor = () => {
     return new Promise(async(resolve, reject) => {
         try {
-            let doctor = await db.user.findAll({
+            let doctor = await db.User.findAll({
                 where: {roleId: "R2"},
                 attributes: {
                     exclude: ['password', 'image']
@@ -148,7 +148,7 @@ let getDetailDoctorById = (id) => {
                 })
             }
             else {
-                let data = await db.user.findOne({
+                let data = await db.User.findOne({
                     where: {
                         id: id
                     },
@@ -275,7 +275,7 @@ let getScheduleByDate = (doctorId, date) => {
                         attributes: ['valueEn', 'valueVi']
                         },
                         { 
-                            model: db.user, as: 'doctorData', 
+                            model: db.User, as: 'doctorData', 
                         attributes: ['firstName', 'lastName']
                         },
                     ],
@@ -353,7 +353,7 @@ let getProfileDoctorById = (doctorId) => {
                 })
             }
             else {
-                let data = await db.user.findOne({
+                let data = await db.User.findOne({
                     where: {
                         id: doctorId
                     },

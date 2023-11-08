@@ -5,7 +5,7 @@ import {createNewUser, getAllUser, getUserInfoById, updateUserData, deleteUserDa
 
 let getHomePage = async (req,res) => {
     try {
-        let data = await db.user.findAll();
+        let data = await db.User.findAll();
         return res.render('homePage', {
             data: JSON.stringify(data),
         });
